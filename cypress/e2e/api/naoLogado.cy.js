@@ -1,12 +1,15 @@
 describe('API - Profile', () => {
 
+    let urlPerfis = '/api/profile'
+
+    // DRY - Don´t repeat yourself
     context('todos os perfis', () => {
 
         it('valida a API de perfis', () => {
             cy.log('Test de texto')
             cy.request({
                 method: 'GET',
-                url: '/api/profile'
+                url: urlPerfis
             }).then(({ status, duration, body, headers }) => {
                 expect(status).to.equal(200)
                 expect(duration).to.be.lessThan(10000)
@@ -22,10 +25,12 @@ describe('API - Profile', () => {
 
     context('perfil específico', () => {
 
+        let urlPerfil = '/api/profile/user'
+
         it('seleciona um usuário inválido', () => {
             cy.request({
                 method:'GET',
-                url: '/api/profile/user/1', 
+                url: `${urlPerfil}/1`, 
                 failOnStatusCode: false
             }).then(({ status, body }) => {
                 expect(status).to.eq(404)
@@ -40,22 +45,22 @@ describe('API - Profile', () => {
 
             cy.request({
                 method: 'GET',
-                url: `/api/profile/user/${usuarioId}`
+                url: `${urlPerfil}/${usuarioId}`
             }).then(({ status, body }) => {
                 expect(status).to.eq(200)
             })
         })
 
-        it.only('valida um usuário buscando na base', () => {
+        it('valida um usuário buscando na base', () => {
 
             cy.request({
                 method: 'GET',
-                url: '/api/profile'
+                url: urlPerfis
             }).then(({ body }) => {
                                 
                 cy.request({
                     method: 'GET',
-                    url: `/api/profile/user/${body[1].user._id}`
+                    url: `${urlPerfil}/${body[1].user._id}`
                 }).then(({ status, body }) => {
                     expect(status).to.eq(200)
                     expect(body.status).to.eq('Gerente de Testes')
