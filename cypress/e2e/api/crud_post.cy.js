@@ -2,22 +2,19 @@ describe('CRUD - Posts', () => {
 
     let postId = ''
     let mensagem = 'Este post foi feito pelo Cypress'
+    const login = (email, password) => {
+        cy.authent(email, password)
+    }
         
-    beforeEach(() => {
+    before(() => {
         
-        cy.request({
-            method: 'POST',
-            url: '/api/auth',
-            body: {
-                email: Cypress.env('email'),
-                password: Cypress.env('password')
-            }
-        })/* .then(() => {
+        login(Cypress.env('email'), Cypress.env('password'))
+    })
 
-            Cypress.Cookies.defaults({
-                preserve: 'jwt'
-            })
-        }) */
+    after(() => {
+
+        cy.clearCookie('jwt').should('be.null')
+
     })
 
     it('cria um post', () => {
