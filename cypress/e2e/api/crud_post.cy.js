@@ -13,7 +13,7 @@ describe('CRUD - Posts', () => {
 
     after(() => {
 
-        cy.clearCookie('jwt').should('be.null')
+        cy.clearCookie('jwt').should('be.null') 
 
     })
 
