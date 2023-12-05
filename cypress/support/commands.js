@@ -35,7 +35,7 @@ Cypress.Commands.add('testeContrato', (schema, resposta) => {
 
     // iniciar o AJV
     const ajv = new Ajv()
-    const validacao = ajv.addSchema(definitionHelper).compile()
+    const validacao = ajv.addSchema(definitionHelper).compile(schema)
     const valido = validacao(resposta)
 
     // verificar se o schema passou ou falhou 
