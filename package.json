@@ -12,6 +12,7 @@
   "dependencies": {
     "ajv": "^8.12.0",
     "cypress": "^13.6.0",
+    "cypress-v10-preserve-cookie": "^1.2.1",
     "eslint-plugin-cypress": "^2.15.1",
     "mongodb": "^6.3.0"
   },

@@ -1,6 +1,7 @@
 import Ajv from 'ajv'
 import { definitionHelper } from '../utils/schemaDefinitions'
 
+// Loga na aplicacao via API
 Cypress.Commands.add('authent', (email, password) => {
 
     cy.session([email, password], () => {
@@ -10,19 +11,13 @@ Cypress.Commands.add('authent', (email, password) => {
             body: {
                 email,
                 password
-            }
-        }).then(({ body }) => {
-
-            // window.localStorage.setItem('jwt', body.jwt)
-
-            cy.setCookie('jwt', body.jwt)
-            
+            },
         })
-    })    
-
+    })
 
 })
 
+// Executa teste de contrato em uma API
 Cypress.Commands.add('testeContrato', (schema, resposta) => {
 
 
@@ -46,4 +41,9 @@ Cypress.Commands.add('testeContrato', (schema, resposta) => {
     } else 
         expect(valido, 'Validação de contrato').to.be.true
     
+})
+
+// Seleciona um elemento pelo atributo data-test
+Cypress.Commands.add('getElement', seletor => {
+    return cy.get(`[data-test=${seletor}]`)
 })

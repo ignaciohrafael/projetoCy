@@ -1,19 +1,29 @@
 import { testeContratoPOSTPosts } from '../../fixtures/schema-POST-posts'
 import { testeContratoGETPosts } from '../../fixtures/schema-GET-posts'
+import 'cypress-v10-preserve-cookie'
 
 
 describe('CRUD - Posts', () => {
 
     let postId = ''
     let mensagem = 'Este post foi feito pelo Cypress'
+
     const login = (email, password) => {
         cy.authent(email, password)
-    }
+    } 
         
     before(() => {
         
         login(Cypress.env('email'), Cypress.env('password'))
+
     })
+    
+    beforeEach(() => {
+
+        cy.preserveCookieOnce('jwt')
+
+    })
+  
 
     after(() => {
 
@@ -21,7 +31,7 @@ describe('CRUD - Posts', () => {
 
     })
 
-    it.only('cria um post', () => {
+    it('cria um post', () => {
 
         cy.request({
             method: 'POST',
@@ -38,7 +48,7 @@ describe('CRUD - Posts', () => {
         })
     })
 
-    it.only('lê o post', () => {
+    it('lê o post', () => {
         cy.request({
             method: 'GET',
             url: `/api/posts/${postId}`
