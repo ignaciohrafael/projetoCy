@@ -17,6 +17,7 @@
     "mongodb": "^6.3.0"
   },
   "devDependencies": {
+    "@cypress/grep": "^4.0.1",
     "eslint": "^8.54.0"
   }
 }

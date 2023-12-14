@@ -5,7 +5,7 @@ module.exports = defineConfig({
         viewportHeight: 1080,
         viewportWidth: 1920,
         baseUrl: 'http://localhost:5000',
-
+        projectId: 'k3q459',
         
         // eslint-disable-next-line
         setupNodeEvents(on, config) {
