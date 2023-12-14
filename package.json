@@ -14,7 +14,8 @@
     "cypress": "^13.6.0",
     "cypress-v10-preserve-cookie": "^1.2.1",
     "eslint-plugin-cypress": "^2.15.1",
-    "mongodb": "^6.3.0"
+    "mongodb": "^6.3.0",
+    "mongoose": "^5.12.3"
   },
   "devDependencies": {
     "@cypress/grep": "^4.0.1",

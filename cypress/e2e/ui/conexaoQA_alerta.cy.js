@@ -28,6 +28,6 @@ describe('alertas', () => {
         cy.getElement('alert')
             .should('not.exist')
 
-        cy.restore()
+    
     })
 })
